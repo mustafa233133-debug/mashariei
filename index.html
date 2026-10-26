@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="مشاريعي">
+<meta name="theme-color" content="#0f2b4a">
+<title>مشاريعي</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8f6f1;--card:#fff;--tx:#10243d;--mu:#7a7466;--bd:#efe9da;--navy:#0f2b4a;--gold:#c8962b;--goldt:#f3dfa6;color-scheme:light}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:var(--bg);color:var(--tx);font-family:'Tajawal',system-ui,-apple-system,'Segoe UI',Tahoma,sans-serif;font-size:15px;line-height:1.6}
+.top{background:var(--navy);color:#fff;padding:calc(28px + env(safe-area-inset-top,0px)) 24px 70px;border-radius:0 0 34px 34px;text-align:center}
+.top h1{margin:0;font-size:26px;font-weight:800;color:var(--goldt)}
+.top p{margin:4px 0 0;color:#bcd0e8;font-size:13.5px}
+main{max-width:520px;margin:-46px auto 0;padding:0 16px calc(24px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px}
+a.card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--bd);border-radius:22px;padding:18px;text-decoration:none;color:inherit;box-shadow:0 18px 32px -20px var(--navy);transition:transform .12s,border-color .12s}
+a.card:active{transform:scale(.98)}
+a.card:hover{border-color:var(--gold)}
+.ic{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;flex:none}
+.ic.a{background:#f6efdc;color:#a8791a}
+.ic.b{background:#e6eef8;color:var(--navy)}
+.tx{flex:1;min-width:0}
+.tx b{display:block;font-size:18px;color:var(--navy)}
+.tx small{display:block;color:var(--mu);font-size:13px}
+.ch{color:#b9b09a;flex:none}
+.rem{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--mu);font-size:13px;margin-top:4px}
+.rem input{width:18px;height:18px;accent-color:var(--navy)}
+.last{text-align:center;font-size:12.5px;color:var(--mu)}
+.last button{border:0;background:none;color:var(--gold);font:inherit;font-weight:700;cursor:pointer;padding:0 4px}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>مشاريعي</h1>
+  <p>اختر المشروع الذي تريد فتحه</p>
+</header>
+<main>
+  <a class="card" href="https://hesabati3.pages.dev" data-k="hesabati">
+    <span class="ic a"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h13v4"/><path d="M3 7v11a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1H5a2 2 0 0 1-2-2z"/><circle cx="16" cy="14" r="1"/></svg></span>
+    <span class="tx"><b>حساباتي</b><small>الإيرادات والمصروفات والسندات</small></span>
+    <svg class="ch" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+  </a>
+  <a class="card" href="https://aliyati-git.pages.dev" data-k="aliyati">
+    <span class="ic b"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5l8-2v18M12 8l8 2v11M3 21h18M8 9h1M8 13h1M8 17h1M16 13h1M16 17h1"/></svg></span>
+    <span class="tx"><b>آلياتي</b><small>المشروع الثاني</small></span>
+    <svg class="ch" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+  </a>
+  <label class="rem"><input type="checkbox" id="rem"> افتح آخر مشروع مباشرة في المرة القادمة</label>
+  <div class="last" id="last" hidden></div>
+</main>
+<script>
+(function(){
+  const K='launcher-last', R='launcher-remember';
+  const get=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+  const set=(k,v)=>{try{v==null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){}};
+  const cards=[...document.querySelectorAll('a.card')];
+  const rem=document.getElementById('rem');
+  rem.checked=get(R)==='1';
+  rem.addEventListener('change',()=>set(R,rem.checked?'1':null));
+  cards.forEach(a=>a.addEventListener('click',()=>set(K,a.dataset.k)));
+  // ?pick في الرابط يُظهر شاشة الاختيار دائماً حتى لو كان الفتح التلقائي مفعّلاً
+  const pick=new URLSearchParams(location.search).has('pick');
+  const last=cards.find(a=>a.dataset.k===get(K));
+  if(last&&rem.checked&&!pick){location.replace(last.href);return}
+  if(last&&rem.checked){
+    const el=document.getElementById('last');el.hidden=false;
+    el.innerHTML='الفتح التلقائي مفعّل على «'+last.querySelector('b').textContent+'» <button id="off">إيقاف</button>';
+    document.getElementById('off').onclick=()=>{rem.checked=false;set(R,null);el.hidden=true};
+  }
+})();
+</script>
+</body>
+</html>
