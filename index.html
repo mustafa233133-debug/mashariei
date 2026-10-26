@@ -3,75 +3,127 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مشاريعي</title>
+<meta name="description" content="اختر بين حساباتي وآلياتي">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="مشاريعي">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#0f2b4a">
-<title>مشاريعي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f8f6f1;--card:#fff;--tx:#10243d;--mu:#7a7466;--bd:#efe9da;--navy:#0f2b4a;--gold:#c8962b;--goldt:#f3dfa6;color-scheme:light}
-*{box-sizing:border-box}
+/* Layout: navy hero with logo + greeting, two project cards overlapping its edge, company footer */
+:root{
+  --bg:#f6f4ee;--card:#ffffff;--tx:#10243d;--mu:#7a7466;--bd:#ebe4d2;
+  --navy:#0f2b4a;--navy2:#163a63;--gold:#c8962b;--goldl:#f3d68c;--goldt:#f3dfa6;--sky:#bcd0e8;
+  --t1:#f6efdc;--t1i:#a8791a;--t2:#e6eef8;--t2i:#0f2b4a;
+  --f:'Tajawal',system-ui,-apple-system,'Segoe UI',Tahoma,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0a1626;--card:#122339;--tx:#e9eef5;--mu:#9aa6b6;--bd:#21364f;
+  --t1:#2e2614;--t1i:#e7bd5c;--t2:#1b3150;--t2i:#cfe0f5;color-scheme:dark}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;min-height:100%}
-body{background:var(--bg);color:var(--tx);font-family:'Tajawal',system-ui,-apple-system,'Segoe UI',Tahoma,sans-serif;font-size:15px;line-height:1.6}
-.top{background:var(--navy);color:#fff;padding:calc(28px + env(safe-area-inset-top,0px)) 24px 70px;border-radius:0 0 34px 34px;text-align:center}
-.top h1{margin:0;font-size:26px;font-weight:800;color:var(--goldt)}
-.top p{margin:4px 0 0;color:#bcd0e8;font-size:13.5px}
-main{max-width:520px;margin:-46px auto 0;padding:0 16px calc(24px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px}
-a.card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--bd);border-radius:22px;padding:18px;text-decoration:none;color:inherit;box-shadow:0 18px 32px -20px var(--navy);transition:transform .12s,border-color .12s}
-a.card:active{transform:scale(.98)}
-a.card:hover{border-color:var(--gold)}
-.ic{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;flex:none}
-.ic.a{background:#f6efdc;color:#a8791a}
-.ic.b{background:#e6eef8;color:var(--navy)}
+body{background:var(--bg);color:var(--tx);font-family:var(--f);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.hero{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--navy2),var(--navy) 60%,#0a1f38);color:#fff;
+  padding:calc(26px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) 92px max(20px,env(safe-area-inset-left,0px));
+  border-radius:0 0 36px 36px}
+.hero::after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(200,150,43,.28),transparent 65%);top:-170px;left:-140px;pointer-events:none}
+.hrow{position:relative;z-index:1;max-width:560px;margin:0 auto;display:flex;align-items:center;gap:14px}
+.logo{width:58px;height:58px;border-radius:16px;flex:none;box-shadow:0 10px 24px -8px rgba(0,0,0,.6)}
+.hrow h1{margin:0;font-size:26px;font-weight:800;color:var(--goldt);line-height:1.2}
+.hrow p{margin:2px 0 0;color:var(--sky);font-size:13.5px}
+.greet{position:relative;z-index:1;max-width:560px;margin:22px auto 0;display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+.greet b{display:block;font-size:20px;font-weight:700}
+.greet small{color:var(--sky);font-size:13px}
+.clock{font-size:30px;font-weight:800;color:var(--goldt);font-variant-numeric:tabular-nums;direction:ltr;line-height:1}
+main{max-width:560px;margin:-62px auto 0;padding:0 max(16px,env(safe-area-inset-right,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:14px;position:relative;z-index:2}
+.lbl{font-size:12px;font-weight:700;letter-spacing:.4px;color:var(--sky);margin:6px 4px -4px}
+a.card{position:relative;display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--bd);border-radius:24px;padding:20px 18px;text-decoration:none;color:inherit;
+  box-shadow:0 1px 2px rgba(15,43,74,.06),0 20px 36px -24px rgba(15,43,74,.55);transition:transform .15s ease,border-color .15s ease}
+a.card:active{transform:scale(.975)}
+a.card:hover,a.card:focus-visible{border-color:var(--gold);outline:none}
+.ic{width:64px;height:64px;border-radius:20px;display:grid;place-items:center;flex:none}
+.ic.a{background:var(--t1);color:var(--t1i)}
+.ic.b{background:var(--t2);color:var(--t2i)}
 .tx{flex:1;min-width:0}
-.tx b{display:block;font-size:18px;color:var(--navy)}
-.tx small{display:block;color:var(--mu);font-size:13px}
-.ch{color:#b9b09a;flex:none}
-.rem{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--mu);font-size:13px;margin-top:4px}
+.tx b{display:block;font-size:19px;font-weight:800}
+.tx span{display:block;color:var(--mu);font-size:13.5px}
+.go{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--bg);color:var(--mu);flex:none}
+.tag{position:absolute;top:-9px;left:18px;background:var(--gold);color:#fff;font-size:11px;font-weight:700;border-radius:20px;padding:2px 10px}
+.tag[hidden]{display:none}
+.rem{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--mu);font-size:13px;margin-top:6px}
 .rem input{width:18px;height:18px;accent-color:var(--navy)}
-.last{text-align:center;font-size:12.5px;color:var(--mu)}
-.last button{border:0;background:none;color:var(--gold);font:inherit;font-weight:700;cursor:pointer;padding:0 4px}
+footer{text-align:center;color:var(--mu);font-size:12px;margin-top:10px;line-height:1.7}
+footer b{color:var(--tx);font-weight:700}
+@media (prefers-reduced-motion:no-preference){
+  a.card{animation:up .45s ease both}a.card:nth-of-type(2){animation-delay:.07s}
+  @keyframes up{from{opacity:.001;transform:translateY(12px)}to{opacity:1;transform:none}}
+}
 </style>
 </head>
 <body>
-<header class="top">
-  <h1>مشاريعي</h1>
-  <p>اختر المشروع الذي تريد فتحه</p>
+<header class="hero">
+  <div class="hrow">
+    <img class="logo" src="/icon-192.png" alt="">
+    <div><h1>مشاريعي</h1><p>كل حساباتك في مكان واحد</p></div>
+  </div>
+  <div class="greet">
+    <div><b id="hi">أهلاً بك</b><small id="date"></small></div>
+    <div class="clock" id="clock"></div>
+  </div>
 </header>
+
 <main>
+  <div class="lbl">اختر المشروع</div>
+
   <a class="card" href="https://hesabati3.pages.dev" data-k="hesabati">
-    <span class="ic a"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h13v4"/><path d="M3 7v11a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1H5a2 2 0 0 1-2-2z"/><circle cx="16" cy="14" r="1"/></svg></span>
-    <span class="tx"><b>حساباتي</b><small>الإيرادات والمصروفات والسندات</small></span>
-    <svg class="ch" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+    <span class="tag" hidden>آخر استخدام</span>
+    <span class="ic a"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h13v4"/><path d="M3 7v11a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1H5a2 2 0 0 1-2-2z"/><circle cx="16" cy="14" r="1"/></svg></span>
+    <span class="tx"><b>حساباتي</b><span>الإيرادات والمصروفات والسندات</span></span>
+    <span class="go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></span>
   </a>
+
   <a class="card" href="https://aliyati-git.pages.dev" data-k="aliyati">
-    <span class="ic b"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5l8-2v18M12 8l8 2v11M3 21h18M8 9h1M8 13h1M8 17h1M16 13h1M16 17h1"/></svg></span>
-    <span class="tx"><b>آلياتي</b><small>المشروع الثاني</small></span>
-    <svg class="ch" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+    <span class="tag" hidden>آخر استخدام</span>
+    <span class="ic b"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17h12v-5H9L7 9H4v8"/><path d="M14 14h3l3-6 2 1-2 5"/><circle cx="5" cy="19" r="1.6"/><circle cx="11" cy="19" r="1.6"/><path d="M4 9V6h3"/></svg></span>
+    <span class="tx"><b>آلياتي</b><span>الآليات والمعدات</span></span>
+    <span class="go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></span>
   </a>
+
   <label class="rem"><input type="checkbox" id="rem"> افتح آخر مشروع مباشرة في المرة القادمة</label>
-  <div class="last" id="last" hidden></div>
+
+  <footer><b>شركة أنوار القريشي</b><br>للمقاولات والتجارة العامة</footer>
 </main>
+
 <script>
 (function(){
-  const K='launcher-last', R='launcher-remember';
+  const MN=['كانون الثاني','شباط','آذار','نيسان','أيار','حزيران','تموز','آب','أيلول','تشرين الأول','تشرين الثاني','كانون الأول'];
+  const DN=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+  function tick(){
+    const d=new Date(),h=d.getHours();
+    document.getElementById('hi').textContent=h<12?'صباح الخير':'مساء الخير';
+    document.getElementById('date').textContent=DN[d.getDay()]+' '+d.getDate()+' '+MN[d.getMonth()]+' '+d.getFullYear();
+    let hh=h%12||12;document.getElementById('clock').textContent=hh+':'+String(d.getMinutes()).padStart(2,'0');
+  }
+  tick();setInterval(tick,15000);
+
+  const K='launcher-last',R='launcher-remember';
   const get=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
   const set=(k,v)=>{try{v==null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){}};
-  const cards=[...document.querySelectorAll('a.card')];
-  const rem=document.getElementById('rem');
+  const cards=[...document.querySelectorAll('a.card')],rem=document.getElementById('rem');
   rem.checked=get(R)==='1';
   rem.addEventListener('change',()=>set(R,rem.checked?'1':null));
   cards.forEach(a=>a.addEventListener('click',()=>set(K,a.dataset.k)));
-  // ?pick في الرابط يُظهر شاشة الاختيار دائماً حتى لو كان الفتح التلقائي مفعّلاً
-  const pick=new URLSearchParams(location.search).has('pick');
   const last=cards.find(a=>a.dataset.k===get(K));
-  if(last&&rem.checked&&!pick){location.replace(last.href);return}
-  if(last&&rem.checked){
-    const el=document.getElementById('last');el.hidden=false;
-    el.innerHTML='الفتح التلقائي مفعّل على «'+last.querySelector('b').textContent+'» <button id="off">إيقاف</button>';
-    document.getElementById('off').onclick=()=>{rem.checked=false;set(R,null);el.hidden=true};
-  }
+  if(last) last.querySelector('.tag').hidden=false;
+  // ?pick في الرابط يُظهر شاشة الاختيار دائماً
+  if(last&&rem.checked&&!new URLSearchParams(location.search).has('pick')) location.replace(last.href);
 })();
 </script>
 </body>
